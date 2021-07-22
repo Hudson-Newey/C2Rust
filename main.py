@@ -30,7 +30,7 @@ def main():
 
 		fileContents += f"fn {CfunctionName}() " + "{"
 
-		fileContents += functionContents(CfunctionName, CfileContents)[0] + "}"
+		fileContents += functionContents(CfunctionName, CfileContents)[0] + "}\n\n"
 
 		fileContents = replaceFunctions(fileContents)
 
