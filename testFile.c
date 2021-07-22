@@ -2,9 +2,9 @@
 
 void printHelloWorld() {
    // comments are transfered accross
-   char name[128] = "Hello World!";
+   char textToPrint[128] = "Hello World!";
 
-   printf(name);
+   printf(textToPrint);
 }
 
 int main() {
