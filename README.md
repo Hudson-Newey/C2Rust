@@ -12,7 +12,7 @@ _Since development is not completed, please check the testFile.c to see the exte
 ### DEVELOPMENT PROGRESS
 Currently Supports:
 * Functions
-* _Function Parameters_
+* Function Parameters
 * Calling of functions
 * Conversion to Snake Casing
 * Variables (constants and mutable)
@@ -25,3 +25,4 @@ TODO:
 * ADD: support for more basic C functions
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once
+* ADD: support for pointers

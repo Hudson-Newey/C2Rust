@@ -15,9 +15,9 @@ def findVariables(contents):
 
 def reAlignDatatype(CdataType):
 	conversionTable = {
-		"int": "i8",
-		"float": "i16",
-		"double": "i32",
+		"int": "i32",
+		"float": "f32",
+		"double": "f64",
 		"char": "std::string::String"
 	}
 
