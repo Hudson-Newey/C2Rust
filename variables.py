@@ -9,8 +9,6 @@ def findVariables(contents):
 	for regex in checkList:
 		variables += re.findall(regex, contents)
 
-	print(variables)
-
 	return variables
 
 def reAlignDatatype(CdataType):

@@ -6,6 +6,7 @@ from variables import *
 from caseConvert import convertCasing
 
 import sys
+from os import path
 
 def main():
 	# define the output variables
@@ -13,8 +14,12 @@ def main():
 	outFileName = "out.rs"
 
 	if (len(sys.argv) <= 1):
-		print("Please specify an input file...")
+		print("\x1B[33mPlease specify an input file...\x1b[0m")
 		print("$ python3 ./main.py <inFile> (outFile)")
+		exit()
+
+	if (not path.exists(sys.argv[1])):
+		print("\x1B[33mError 404!\nC File not found...\x1b[0m")
 		exit()
 
 	if (len(sys.argv) > 2):
