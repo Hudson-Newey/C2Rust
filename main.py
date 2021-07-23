@@ -38,7 +38,7 @@ def main():
 
 		fileContents += f"fn {CfunctionName}({CfunctionParams}) " + "{"
 
-		fileContents += functionContents(CfunctionName, CfunctionParams, CfileContents)[0] + "}\n\n"
+		fileContents += functionContents(CfunctionName, CfunctionParams, CfileContents) + "}\n\n"
 
 	# extract all the variables out of the source file
 	Cvariables = findVariables(fileContents)

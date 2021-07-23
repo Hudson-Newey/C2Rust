@@ -9,7 +9,26 @@ def extractFunctions(text):
 	return foundFunctions
 
 def functionContents(functionName, functionParam, Cfile):
-	regex = functionName + "\(" + escapeChars(functionParam) + "\).*?{(.+?)}"
-	functionContents = re.findall(regex, Cfile, re.DOTALL)
+	# find the end of the function declaration
+	# this is done by finding the name + the paramiters + 2 characters to get past
+	# the first semicolon
+	functionLocIndex = Cfile.index(f"{functionName}({functionParam})")
+	functionLocIndex += len(f"{functionName}({escapeChars(functionParam)})") + 2
+
+	# this variable starts at 1 since the function opening bracket
+	# is classed as a "functional loop" in the eyes of the converter
+	passedLoops = 1
+	endFuncLocIndex = functionLocIndex
+
+	while (passedLoops > 0):
+		endFuncLocIndex += 1
+
+		if (Cfile[endFuncLocIndex] == "{"):
+			passedLoops += 1
+
+		if (Cfile[endFuncLocIndex] == "}"):
+			passedLoops -= 1
+
+	functionContents = Cfile[functionLocIndex:endFuncLocIndex]
 
 	return functionContents

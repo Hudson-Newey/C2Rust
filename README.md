@@ -19,12 +19,15 @@ Currently Supports:
 * Basic C functions
 	1. printf()
 	2. gets()
+* While loops
 
 TODO:
 * BUG: when declaring variables for the first time, they must have a value
 * BUG: global comments do not carry over
+* NOT GOOD: Code quality
+* NOT GOOD: Using the rust string type `std::string::String` is proving difficult to work with
 * ADD: support for more basic C functions
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once
 * ADD: support for pointers
-* ADD: support for conditional loops
+* ADD: conditional for loops
