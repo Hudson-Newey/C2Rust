@@ -22,7 +22,6 @@ Currently Supports:
 
 TODO:
 * BUG: when declaring variables for the first time, they must have a value
-* BUG: at the current time, functions can only have one parameter
 * ADD: support for more basic C functions
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once

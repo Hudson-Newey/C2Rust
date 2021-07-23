@@ -25,6 +25,7 @@ def convertToSnakeCase(variableName):
 
 	return outContents
 
+# converts a documents contents to snake casing
 def convertCasing(contents):
 	outContents = contents
 
