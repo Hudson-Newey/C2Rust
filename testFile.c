@@ -1,15 +1,17 @@
 #include <stdio.h>
 
-void printHelloWorld() {
+void sayHello() {
    // comments are transfered accross
-   char textToPrint[128] = "Hello World!";
+   char name[64] = "";
+   char textToPrint[128] = "Hello ";
 
-   printf(textToPrint);
+   gets(name);
+   printf("%c %c!", textToPrint, name);
 }
 
 int main() {
    // call another function
-   printHelloWorld()
+   sayHello();
 
    return 0;
 }

@@ -10,7 +10,7 @@ def reAlignDatatype(CdataType):
 		"int": "i8",
 		"float": "i16",
 		"double": "i32",
-		"char": "&str"
+		"char": "std::string::String"
 	}
 
 	return conversionTable.get(CdataType)
@@ -24,8 +24,13 @@ def reformatVariable(variable):
 
 		variableName = variableName.replace(charStringLength, "")
 
-	formatedVariable = "let "
+	# future releases should not make every variable mutable
+	# although, this is easier for the prototyping process
+	formatedVariable = "let mut "
 
 	formatedVariable += f"{variableName}: {reAlignDatatype(variable[0])} = {variable[2]}"
+
+	if ("std::string::String" in formatedVariable):
+		formatedVariable += ".to_string()"
 
 	return formatedVariable
