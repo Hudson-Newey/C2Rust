@@ -1,9 +1,17 @@
 import re
 
 def findVariables(contents):
-	regex = "(int|double|float|char) (.+?) = (.+?);"
+	variables = []
+	dataTypes = "(int|double|float|char)"
 
-	return re.findall(regex, contents)
+	checkList = [f"{dataTypes} (.+?) = (.+?);", f"\({dataTypes} (.+?)()\)"]
+
+	for regex in checkList:
+		variables += re.findall(regex, contents)
+
+	print(variables)
+
+	return variables
 
 def reAlignDatatype(CdataType):
 	conversionTable = {
@@ -28,6 +36,8 @@ def shouldBeMutable(variableName, contents):
 
 def reformatVariable(variable, contents):
 	variableName = variable[1]
+	variableType = variable[0]
+	variableValue = variable[2]
 
 	if (variable[0] == "char"):
 		regex = "\[[0-9]+\]"
@@ -35,13 +45,18 @@ def reformatVariable(variable, contents):
 
 		variableName = variableName.replace(charStringLength, "")
 
-	formatedVariable = "let "
-	if (shouldBeMutable(variableName, contents)):
-		formatedVariable += "mut "
+	formatedVariable = ""
+	if (len(variableValue) > 0):
+		formatedVariable = "let "
 
-	formatedVariable += f"{variableName}: {reAlignDatatype(variable[0])} = {variable[2]}"
+		if (shouldBeMutable(variableName, contents)):
+			formatedVariable += "mut "
 
-	if ("std::string::String" in formatedVariable):
-		formatedVariable += ".to_string()"
+		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)} = {variableValue}"
+
+		if ("std::string::String" in formatedVariable):
+			formatedVariable += ".to_string()"
+	else:
+		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)}"
 
 	return formatedVariable

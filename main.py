@@ -29,18 +29,27 @@ def main():
 	for function in Cfunctions:
 		CfunctionName = function[1]
 		CfunctionType = function[0]
+		CfunctionParams = function[2]
 
-		fileContents += f"fn {CfunctionName}() " + "{"
+		fileContents += f"fn {CfunctionName}({CfunctionParams}) " + "{"
 
-		fileContents += functionContents(CfunctionName, CfileContents)[0] + "}\n\n"
+		fileContents += functionContents(CfunctionName, CfunctionParams, CfileContents)[0] + "}\n\n"
 
 	# extract all the variables out of the source file
 	Cvariables = findVariables(fileContents)
 
 	for variable in Cvariables:
+		variableName = variable[1]
+		variableType = variable[0]
+		variableValue = variable[2]
+		
 		reformattedVariable = reformatVariable(variable, fileContents)
 
-		fileContents = fileContents.replace(f"{variable[0]} {variable[1]} = {variable[2]}", reformattedVariable)
+		# check if the variable has a default value
+		if (len(variableValue) > 0):
+			fileContents = fileContents.replace(f"{variableType} {variableName} = {variableValue}", reformattedVariable)
+		else:
+			fileContents = fileContents.replace(f"{variableType} {variableName}", reformattedVariable)
 
 	fileContents = replaceFunctions(fileContents)
 	fileContents = convertCasing(fileContents)

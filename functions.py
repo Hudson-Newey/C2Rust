@@ -1,12 +1,15 @@
 import re
 
+from tools import escapeChars
+
 def extractFunctions(text):
-	regex = "(.+?) (.+?)\(\).*?(?:{)"
+	regex = "(.+?) (.+?)\((.*?)\).*?(?:{)"
+	foundFunctions = re.findall(regex, text)
 
-	return re.findall(regex, text)
+	return foundFunctions
 
-def functionContents(functionName, Cfile):
-	regex = functionName + "\(\).*?{(.+?)}"
+def functionContents(functionName, functionParam, Cfile):
+	regex = functionName + "\(" + escapeChars(functionParam) + "\).*?{(.+?)}"
 	functionContents = re.findall(regex, Cfile, re.DOTALL)
 
 	return functionContents
