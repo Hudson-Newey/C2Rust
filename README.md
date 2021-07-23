@@ -22,7 +22,9 @@ Currently Supports:
 
 TODO:
 * BUG: when declaring variables for the first time, they must have a value
+* BUG: global comments do not carry over
 * ADD: support for more basic C functions
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once
 * ADD: support for pointers
+* ADD: support for conditional loops
