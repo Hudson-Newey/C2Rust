@@ -15,7 +15,18 @@ def reAlignDatatype(CdataType):
 
 	return conversionTable.get(CdataType)
 
-def reformatVariable(variable):
+def shouldBeMutable(variableName, contents):
+	REchecks = ["\(" + variableName + "\)", f"{variableName} ="]
+
+	for checkRE in REchecks:
+		mutableInstances = re.findall(checkRE, contents)
+
+		if (len(mutableInstances) > 0):
+			return True
+
+	return False
+
+def reformatVariable(variable, contents):
 	variableName = variable[1]
 
 	if (variable[0] == "char"):
@@ -24,9 +35,9 @@ def reformatVariable(variable):
 
 		variableName = variableName.replace(charStringLength, "")
 
-	# future releases should not make every variable mutable
-	# although, this is easier for the prototyping process
-	formatedVariable = "let mut "
+	formatedVariable = "let "
+	if (shouldBeMutable(variableName, contents)):
+		formatedVariable += "mut "
 
 	formatedVariable += f"{variableName}: {reAlignDatatype(variable[0])} = {variable[2]}"
 

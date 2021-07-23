@@ -38,7 +38,7 @@ def main():
 	Cvariables = findVariables(fileContents)
 
 	for variable in Cvariables:
-		reformattedVariable = reformatVariable(variable)
+		reformattedVariable = reformatVariable(variable, fileContents)
 
 		fileContents = fileContents.replace(f"{variable[0]} {variable[1]} = {variable[2]}", reformattedVariable)
 
