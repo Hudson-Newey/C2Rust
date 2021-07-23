@@ -8,7 +8,7 @@ def replaceFunctions(contents):
 	for varType in inlineVar:
 		contents = contents.replace(varType, "{}")
 
-	contents = contents.replace("\nreturn 0;", "")
+	contents = contents.replace("return 0;", "")
 
 	# replace the CLI input
 	CinputRE = ["(gets\((.+?)\))"]
