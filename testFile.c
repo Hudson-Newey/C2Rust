@@ -1,7 +1,5 @@
 #include <stdio.h>
 
-// this is a global variable
-
 void sayHello(char name[64], int lineage) {
    // comments are transfered accross
    char textToPrint[128] = "Hello";

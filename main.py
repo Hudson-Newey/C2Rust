@@ -36,7 +36,7 @@ def main():
 		CfunctionType = function[0]
 		CfunctionParams = function[2]
 
-		fileContents += f"fn {CfunctionName}({CfunctionParams}) " + "{"
+		fileContents += f"fn {CfunctionName}({CfunctionParams}) " + "{\n"
 
 		fileContents += functionContents(CfunctionName, CfunctionParams, CfileContents) + "}\n\n"
 
