@@ -21,6 +21,7 @@ Currently Supports:
 	2. gets()
 * While loops
 * For loops
+* Pointers (primitive use cases)
 
 TODO:
 * BUG: when declaring variables for the first time, they must have a value
@@ -30,6 +31,5 @@ TODO:
 * ADD: support for more basic C functions
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once
-* ADD: support for pointers
 * ADD: support for #define
 * ADD: support for variable incrementation
