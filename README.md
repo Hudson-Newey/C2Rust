@@ -5,7 +5,7 @@ A conversion tool to translate C code into Rust.
 > $ python3 ./main.py [CFileIn] [fileOutName]
 
 #### NOTICE
-_Since development is not completed, please check the testFile.c to see the extent of what the program can process_
+_Since development is not completed, please check the tests/testFile.c to see the extent of what the program can process_
 
 ---
 
