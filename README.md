@@ -20,6 +20,7 @@ Currently Supports:
 	1. printf()
 	2. gets()
 * While loops
+* For loops
 
 TODO:
 * BUG: when declaring variables for the first time, they must have a value
@@ -30,4 +31,4 @@ TODO:
 * ADD: ability to import C libraries where there is no direct alternative
 * ADD: ability to convert entire directories/projects at once
 * ADD: support for pointers
-* ADD: conditional for loops
+* ADD: support for #define

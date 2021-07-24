@@ -4,7 +4,10 @@ void sayHello(char name[64], int lineage) {
    // comments are transfered accross
    char textToPrint[128] = "Hello";
 
-   printf("%c %c the %cth!", textToPrint, name, lineage);
+   for (int i = 0; i < lineage; i = i + 1) {
+      /* say hello to all the lineage of people */
+      printf("%c %c the %cth!", textToPrint, name, i);
+   }
 }
 
 int main() {

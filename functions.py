@@ -3,7 +3,10 @@ import re
 from tools import escapeChars
 
 def extractFunctions(text):
-	regex = "(.+?) (.+?)\((.*?)\).*?(?:{)"
+	# more function return types need to be supported
+	functionReturnTypes = "(int|void|char)"
+
+	regex = functionReturnTypes + " (.+?)\((.*?)\).*?(?:{)"
 	foundFunctions = re.findall(regex, text)
 
 	return foundFunctions

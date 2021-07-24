@@ -1,3 +1,5 @@
+import re
+
 def escapeChars(string):
 	charsToEscape = ["[", "]", "\'", "\"", "(", ")", "-", "+", "*", ".", ":"]
 
@@ -7,3 +9,8 @@ def escapeChars(string):
 		returnString = returnString.replace(char, "\\" + char)
 
 	return returnString
+
+def findOperator(string):
+	operators = "(==|!=|>=|<=|<|>)"
+
+	return re.findall(operators, string)[0]
