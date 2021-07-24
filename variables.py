@@ -35,7 +35,7 @@ def reAlignDatatype(CdataType, variableValue):
 def shouldBeMutable(variableName, contents):
 	variableName = escapeChars(variableName)
 
-	REchecks = ["\(" + variableName + "\)", f"{variableName} ="]
+	REchecks = ["\(" + variableName + "\)", f"{variableName} [\+]*="]
 
 	for checkRE in REchecks:
 		mutableInstances = re.findall(checkRE, contents)

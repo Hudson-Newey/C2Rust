@@ -17,3 +17,10 @@ def findOperator(string):
 	operators = "(==|!=|>=|<=|<|>)"
 
 	return re.findall(operators, string)[0]
+
+def chomp(string):
+	string = string.replace("\t", "")
+	string = string.replace("\n", "")
+	string = string.replace(" ", "")
+
+	return string

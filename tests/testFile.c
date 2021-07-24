@@ -17,7 +17,7 @@ int main() {
 
    while i < 5 {
       printf("C2Rust Converter Demo!");
-      i = i + 1;
+      i++;
    }
 
    // get user input from the command line
