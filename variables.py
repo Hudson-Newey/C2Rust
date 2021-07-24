@@ -5,7 +5,7 @@ def findVariables(contents):
 	variables = []
 	dataTypes = "(int|double|float|char)"
 
-	checkList = [f"{dataTypes} (.+?) = (.+?)", f"\({dataTypes} (.+?)()(?:\)|,)", f", {dataTypes} (.+?)(),", f", {dataTypes} (.+?)()\)"]
+	checkList = [f"{dataTypes} (.+?) = (.+?);", f"{dataTypes} (.+?) = (.+?)", f"\({dataTypes} (.+?)()(?:\)|,)", f", {dataTypes} (.+?)(),", f", {dataTypes} (.+?)()\)"]
 
 	for regex in checkList:
 		variables += re.findall(regex, contents)
