@@ -10,14 +10,21 @@ def findForLoops(contents):
 
 	return forLoops
 
+# find the condition to end
+# eg. when i > 10 exit loop
+# this would return 10
 def findEndingCondition(operator, string):
 	regex = f"{operator} (.+)"
 
 	return re.findall(regex, string)[0]
 
+# replaces for loops with the rust syntax
 def replaceForLoops(contents):
 	forLoops = findForLoops(contents)
 
+	# itterates through the C for loops
+	# each loop contains a tuple with a format similar to
+	# ("int i =0", "i < 10", "i = i + 1")
 	for loop in forLoops:
 		initialVal = loop[0]
 		condition = loop[1]
@@ -43,6 +50,8 @@ def replaceForLoops(contents):
 
 	return contents
 
+# replaces conditional loops
+# this only supports for loops at the current moment
 def replaceConditional(contents):
 	contents = replaceForLoops(contents)
 

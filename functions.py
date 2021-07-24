@@ -23,6 +23,8 @@ def functionContents(functionName, functionParam, Cfile):
 	passedLoops = 1
 	endFuncLocIndex = functionLocIndex
 
+	# counts how many loops its passed
+	# returns the functions contents when its found the end of the code block
 	while (passedLoops > 0):
 		endFuncLocIndex += 1
 

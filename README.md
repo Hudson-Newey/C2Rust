@@ -32,3 +32,4 @@ TODO:
 * ADD: ability to convert entire directories/projects at once
 * ADD: support for pointers
 * ADD: support for #define
+* ADD: support for variable incrementation

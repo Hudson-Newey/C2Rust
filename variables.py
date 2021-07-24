@@ -1,5 +1,6 @@
 import re
 
+# finds all variables in a source file
 def findVariables(contents):
 	variables = []
 	dataTypes = "(int|double|float|char)"
@@ -11,6 +12,7 @@ def findVariables(contents):
 
 	return variables
 
+# takes a C datatype and returns the corrosponding rust data type
 def reAlignDatatype(CdataType):
 	conversionTable = {
 		"int": "i32",
@@ -21,6 +23,8 @@ def reAlignDatatype(CdataType):
 
 	return conversionTable.get(CdataType)
 
+# decides whether a variable is modified in runtime
+# defaults to variables being constants
 def shouldBeMutable(variableName, contents):
 	REchecks = ["\(" + variableName + "\)", f"{variableName} ="]
 
@@ -32,6 +36,7 @@ def shouldBeMutable(variableName, contents):
 
 	return False
 
+# the main calling function to reformat C variables into rust syntax
 def reformatVariable(variable, contents):
 	variableName = variable[1]
 	variableType = variable[0]
@@ -47,13 +52,16 @@ def reformatVariable(variable, contents):
 	if (len(variableValue) > 0):
 		formatedVariable = "let "
 
+		# if the variable gets modified in runtime, make the variable mutable
 		if (shouldBeMutable(variableName, contents)):
 			formatedVariable += "mut "
 
 		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)} = {variableValue}"
 
+		# work around becuase i'm using std::string::String
 		if ("std::string::String" in formatedVariable):
 			formatedVariable += ".to_string()"
+
 	else:
 		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)}"
 

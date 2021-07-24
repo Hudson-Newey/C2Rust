@@ -1,5 +1,6 @@
 import re
 
+# escapes characters that need escaping in regex strings
 def escapeChars(string):
 	charsToEscape = ["[", "]", "\'", "\"", "(", ")", "-", "+", "*", ".", ":"]
 
@@ -10,6 +11,8 @@ def escapeChars(string):
 
 	return returnString
 
+# extracts the C operator from a string
+# this was done to prevent future code duplication
 def findOperator(string):
 	operators = "(==|!=|>=|<=|<|>)"
 

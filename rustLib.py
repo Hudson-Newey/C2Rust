@@ -1,3 +1,4 @@
+# imports a default rust library to the rust code
 def addLibrary(libraryName, contents):
 	return "use " + libraryName + ";\n\n" + contents
 
