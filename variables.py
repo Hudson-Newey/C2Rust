@@ -1,5 +1,7 @@
 import re
 
+from tools import escapeChars
+
 # finds all variables in a source file
 def findVariables(contents):
 	variables = []
@@ -13,7 +15,7 @@ def findVariables(contents):
 	return variables
 
 # takes a C datatype and returns the corrosponding rust data type
-def reAlignDatatype(CdataType):
+def reAlignDatatype(CdataType, variableValue):
 	conversionTable = {
 		"int": "i32",
 		"float": "f32",
@@ -21,11 +23,18 @@ def reAlignDatatype(CdataType):
 		"char": "std::string::String"
 	}
 
-	return conversionTable.get(CdataType)
+	rustDataType = conversionTable.get(CdataType)
+
+	if ("&" in variableValue):
+		rustDataType = "&" + rustDataType
+
+	return rustDataType
 
 # decides whether a variable is modified in runtime
 # defaults to variables being constants
 def shouldBeMutable(variableName, contents):
+	variableName = escapeChars(variableName)
+
 	REchecks = ["\(" + variableName + "\)", f"{variableName} ="]
 
 	for checkRE in REchecks:
@@ -42,11 +51,12 @@ def reformatVariable(variable, contents):
 	variableType = variable[0]
 	variableValue = variable[2]
 
-	if (variable[0] == "char"):
+	if (variableType == "char"):
 		regex = "\[[0-9]+\]"
-		charStringLength = re.findall(regex, variableName)[0]
+		charStringLength = re.findall(regex, variableName)
 
-		variableName = variableName.replace(charStringLength, "")
+		if (len(charStringLength) > 0):
+			variableName = variableName.replace(charStringLength[0], "")
 
 	formatedVariable = ""
 	if (len(variableValue) > 0):
@@ -56,13 +66,13 @@ def reformatVariable(variable, contents):
 		if (shouldBeMutable(variableName, contents)):
 			formatedVariable += "mut "
 
-		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)} = {variableValue}"
+		formatedVariable += f"{variableName}: {reAlignDatatype(variableType, variableValue)} = {variableValue}"
 
 		# work around becuase i'm using std::string::String
-		if ("std::string::String" in formatedVariable):
+		if ("std::string::String" in formatedVariable and ("\"" in formatedVariable or "'" in formatedVariable)):
 			formatedVariable += ".to_string()"
 
 	else:
-		formatedVariable += f"{variableName}: {reAlignDatatype(variableType)}"
+		formatedVariable += f"{variableName}: {reAlignDatatype(variableType, variableValue)}"
 
 	return formatedVariable
