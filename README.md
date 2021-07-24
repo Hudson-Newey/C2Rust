@@ -2,7 +2,7 @@
 A conversion tool to translate C code into Rust.
 
 ##### USAGE
-> $ python3 ./main.py <CFileIn> (fileOutName)
+> $ python3 ./main.py [CFileIn] [fileOutName]
 
 #### NOTICE
 _Since development is not completed, please check the testFile.c to see the extent of what the program can process_
