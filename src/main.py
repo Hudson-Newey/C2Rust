@@ -22,7 +22,7 @@ def main():
 	if (not path.exists(sys.argv[1])):
 		print("\x1B[33mError 404!\nC File not found...\x1b[0m")
 		exit()
-
+	
 	if (len(sys.argv) > 2):
 		outFileName = sys.argv[2]
 
